@@ -20,9 +20,6 @@ import json
 # Set environment variable at beginning of session
 # export GOOGLE_APPLICATION_CREDENTIALS=key.json
 
-
-
-
 client = vision.ImageAnnotatorClient()
 
 # Clear text file
