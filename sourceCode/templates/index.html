@@ -39,7 +39,9 @@
 						<span>backers</span>
 					</div>
 					<div class="funded">
-						<h3>$10,350</h3>
+						<h3>$10,350</h>
+
+							<p>id="value">placeholder</p>
 						<span>raised out of $23,000</span>
 					</div>
 					<div class="time-left">
@@ -62,11 +64,10 @@
 					<div class="section-block">
 						<div class="funding-meta">
 							<h1>LAUNCH INTO SUCCESS</h1>
-							<span class="type-meta"><i class="fa fa-user"></i> Jonathan Doe</span>
-							<span class="type-meta"><i class="fa fa-tag"></i> <a href="#">crowdfunding</a>, <a href="#">launch</a> </span>
+							<span class="type-meta"><i class="fa fa-user"></i> John Q. Public</span>
 							<!--Video Feed Below This-->
 							<div class="video-frame">
-								<img src="{{ url_for('video_feed') }}" width="600" height="337" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen>
+								<img src="{{ url_for('video_feed') }}" width="650" height="365" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen>
 							</div>
 							<p>Launch will enable you be in run  your own crowdfunding campaign, and be in complete control from concept to crowdfunding to launch.</p>
 							<h2>$10,350</h2>
@@ -233,6 +234,27 @@
 
 	<!-- Template JS and Scripts to Work Faster -->
 	<script type="text/javascript" src="static/js/main.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+	<script type="javascript">
+		function set_val() {
+		document.getElementBYID("value").innerHTML='changed';
+		$.ajax({
+		url:'/get_value',
+		type: 'get',
+		success: function(response) {
+			console.log(response);
+			response=json.loads(response);
+			document.getElementByID("value").innerHTML=response;
+		});
+		}
+
+		$(document).ready(function() {
+			setInterval(set_val,100);
+			console.log("******");
+		});
+
+	</script>
 
 </body>
 </html>

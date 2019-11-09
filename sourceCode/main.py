@@ -8,6 +8,7 @@ import io
 from google.cloud import vision
 from google.cloud.vision import types
 import threading
+import json
 
 
 # ocr_GoogleVision.py
@@ -66,6 +67,8 @@ def number_recognition():
 		# print OCR text
 		print(detect_text(file))
 		text_D = detect_text(file)
+		middle_file=open('detected_Num.txt', 'w')
+		middle_file.write("works")
 
 		# Text Parsing to find recycling number
 		if text_D.find("1") != -1:
@@ -99,6 +102,12 @@ def gen():
 		
 		yield (b'--frame\r\n'
 			   b'Content-Type: image/jpeg\r\n\r\n' + open('t.jpg', 'rb').read() + b'\r\n')
+
+@APP.route("/get_value", methods=['GET'])
+def get_value():
+	middle_file=open("detected_Num.txt", "r")
+	string=middle_file.readline()
+	return json.dumps({"string": string})
 
 @APP.route("/video_feed")
 def video_feed():
