@@ -32,8 +32,12 @@
     <link rel="apple-touch-icon-precomposed" href="../static/ico/apple-touch-icon-57-precomposed.png">
 
 	-->
+	
 
   </head>
+
+	
+
 
   <body>
 
@@ -46,6 +50,7 @@
 
 	<div class="container">
 		<h3>Data goes here</h3>
+		<p id="value"> placeholder</p>
 	</div>
    <!-- /container -->
 
@@ -54,7 +59,33 @@
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="../static/js/jquery-1.8.2.min.js"></script>
     <script src="../static/js/bootstrap.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 
+
+	<script type="text/javascript">
+				console.log("entered here")	
+
+
+                function set_val() {
+
+                $.ajax({
+                url:'/get_value',
+                type: 'get',
+                success: function(response) {
+                        console.log(response);
+                        response= JSON.parse(response);
+                        document.getElementById("value").innerHTML=response['string'];
+				}
+                });
+                };
+
+                $(document).ready(function() {
+                        setInterval(set_val,100);
+                        console.log("******");
+                }); 
+
+	</script>
+	
 
   </body>
 </html>

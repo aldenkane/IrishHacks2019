@@ -68,7 +68,6 @@ def number_recognition():
 		print(detect_text(file))
 		text_D = detect_text(file)
 		middle_file=open('detected_Num.txt', 'w')
-		middle_file.write("works")
 
 		# Text Parsing to find recycling number
 		if text_D.find("1") != -1:
@@ -86,9 +85,11 @@ def number_recognition():
 		elif text_D.find("7") != -1:
 			rec_Num = 7
 		else:
-			rec_Num = "Resin Identification Code (RIC) not detected"
-
+			rec_Num = 0
+			#"Resin Identification Code (RIC) not detected"
+		
 		print(rec_Num)
+		middle_file.write(str(rec_Num))
 
 		# Release Capture at End
 

@@ -41,7 +41,7 @@
 					<div class="funded">
 						<h3>$10,350</h>
 
-							<p>id="value">placeholder</p>
+							<p id="value">placeholder</p>
 						<span>raised out of $23,000</span>
 					</div>
 					<div class="time-left">
@@ -234,27 +234,34 @@
 
 	<!-- Template JS and Scripts to Work Faster -->
 	<script type="text/javascript" src="static/js/main.js"></script>
+	
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 
-	<script type="javascript">
-		function set_val() {
-		document.getElementBYID("value").innerHTML='changed';
-		$.ajax({
-		url:'/get_value',
-		type: 'get',
-		success: function(response) {
-			console.log(response);
-			response=json.loads(response);
-			document.getElementByID("value").innerHTML=response;
-		});
-		}
 
-		$(document).ready(function() {
-			setInterval(set_val,100);
-			console.log("******");
-		});
+        <script type="text/javascript">
+                                console.log("entered here")
 
-	</script>
+
+                function set_val() {
+
+                $.ajax({
+                url:'/get_value',
+                type: 'get',
+                success: function(response) {
+                        console.log(response);
+                        response= JSON.parse(response);
+                        document.getElementById("value").innerHTML=response['string'];
+                                }
+                });
+                };
+
+                $(document).ready(function() {
+                        setInterval(set_val,100);
+                        console.log("******");
+                });
+
+        </script>
+	
 
 </body>
 </html>
