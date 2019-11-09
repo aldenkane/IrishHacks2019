@@ -9,6 +9,7 @@ from google.cloud import vision
 from google.cloud.vision import types
 import threading
 import json
+from collections import defaultdict
 
 
 # ocr_GoogleVision.py
@@ -19,6 +20,17 @@ import json
 
 # Set environment variable at beginning of session
 # export GOOGLE_APPLICATION_CREDENTIALS=key.json
+
+recycle_info=defaultdict(dict)
+
+recycle_info[1]={'code':1,'name':'PETE', 'type':'Polyethylene Terephthalate','rec':'Yes'}
+recycle_info[2]={'code':2,'name':'HDPE', 'type':'High Density Polyethylene','rec':'Yes'}
+recycle_info[3]={'code':3,'name':'PVC', 'type':'Polyvinyl chloride','rec':'No'}
+recycle_info[4]={'code':4,'name':'LDPE', 'type':'Low density polyethylene','rec':'Sometimes, contact local recycling'}
+recycle_info[5]={'code':5,'name':'PP', 'type':'Polypropylene','rec':'Sometimes, contact local recycling'}
+recycle_info[6]={'code':6,'name':'PS', 'type':'Polystyrene','rec':'Sometimes, contact local recycling'}
+recycle_info[7]={'code':7,'name':'OTHER', 'type':'Miscellaneous Plastics','rec':'Sometimes, contact local recycling'}
+
 
 
 
