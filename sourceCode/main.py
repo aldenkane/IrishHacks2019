@@ -1,5 +1,4 @@
 import flask
-#from pyimagesearch.motion_detection import SingleMotionDetector
 from flask import Response
 from flask import Flask
 from flask import render_template
@@ -8,11 +7,7 @@ import io
 # Imports the Google Cloud client library
 from google.cloud import vision
 from google.cloud.vision import types
-
-client = vision.ImageAnnotatorClient()
-
-# Clear text file
-open('detected_Num.txt', 'w').close()
+import threading
 
 
 # ocr_GoogleVision.py
@@ -24,6 +19,15 @@ open('detected_Num.txt', 'w').close()
 # Set environment variable at beginning of session
 # export GOOGLE_APPLICATION_CREDENTIALS=key.json
 
+
+
+
+client = vision.ImageAnnotatorClient()
+
+# Clear text file
+open('detected_Num.txt', 'w').close()
+
+
 APP = flask.Flask(__name__)
 # video shown on screen
 video=cv2.VideoCapture(0)
@@ -34,6 +38,7 @@ cap = cv2.VideoCapture(0)
 @APP.route('/')
 def index():
 	return flask.render_template('index.html')
+
 
 def detect_text(path):
 
@@ -50,16 +55,10 @@ def detect_text(path):
 		string+=' ' + text.description
 	return string
 
-def gen():
+def number_recognition():
+	
+# Capture frame-by-frame
 	while True:
-		rval,frame_top=video.read()
-		cv2.imwrite('t.jpg',frame_top)
-		
-		yield (b'--frame\r\n'
-			   b'Content-Type: image/jpeg\r\n\r\n' + open('t.jpg', 'rb').read() + b'\r\n')
-
-
-		# Capture frame-by-frame
 		ret, frame = cap.read()
 		file = 'current_Frame.png'
 		cv2.imwrite(file, frame)
@@ -89,21 +88,26 @@ def gen():
 		print(rec_Num)
 
 		# Release Capture at End
+
 	cap.release()
 	cv2.destroyAllWindows()
 
-
+def gen():
+	while True:
+		rval,frame_top=video.read()
+		cv2.imwrite('t.jpg',frame_top)
+		
+		yield (b'--frame\r\n'
+			   b'Content-Type: image/jpeg\r\n\r\n' + open('t.jpg', 'rb').read() + b'\r\n')
 
 @APP.route("/video_feed")
 def video_feed():
 	return Response(gen(),mimetype="multipart/x-mixed-replace; boundary=frame")
 
-		
-
-
 if __name__ =='__main__':
 	
-
+	thread=threading.Thread(target=number_recognition)
+	thread.start()
 	APP.debug=True
 	APP.run(host='127.0.0.1',threaded=True)
 
