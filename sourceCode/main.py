@@ -55,6 +55,10 @@ def gen():
 		rval,frame_top=video.read()
 		cv2.imwrite('t.jpg',frame_top)
 		
+		yield (b'--frame\r\n'
+			   b'Content-Type: image/jpeg\r\n\r\n' + open('t.jpg', 'rb').read() + b'\r\n')
+
+
 		# Capture frame-by-frame
 		ret, frame = cap.read()
 		file = 'current_Frame.png'
@@ -84,10 +88,7 @@ def gen():
 
 		print(rec_Num)
 
-		yield (b'--frame\r\n'
-			   b'Content-Type: image/jpeg\r\n\r\n' + open('t.jpg', 'rb').read() + b'\r\n')
-
-	# Release Capture at End
+		# Release Capture at End
 	cap.release()
 	cv2.destroyAllWindows()
 
