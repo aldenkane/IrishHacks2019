@@ -128,8 +128,14 @@
 				<!--/main content-->
 				<!--sidebar-->
 				<div class="content col-md-4 col-sm-12 col-xs-12">
-					<div class="section-block summary">
-						<nobr><h1 class="section-title">RIC #: &nbsp</h1><h1 class="section-title" id="value">placeholder</h1></nobr>
+					<div class="section-block summary" id="color_box">
+						<nobr><h1 class="section-title">RIC #: &nbsp</h1><h1 class="section-title" id="code">placeholder</h1></nobr>
+						<nobr><h1 class="section-title">Name Abbreviation: &nbsp</h1><h1 class="section-title" id="name">placeholder</h1></nobr>
+						<nobr><h1 class="section-title">Type: &nbsp</h1><h1 class="section-title" id="type">placeholder</h1></nobr>
+						<nobr><h1 class="section-title">Recycle?: &nbsp</h1><h1 class="section-title" id="can">placeholder</h1></nobr>
+
+
+
 						<div class="profile-contents">
 							<h2 class="position">Information About Plastic</h2>
 							<img src="static/img/profile-img.jpg" class="profile-image img responsive" alt="John Doe">
@@ -226,7 +232,7 @@
 
 
         <script type="text/javascript">
-                                console.log("entered here")
+                 console.log("entered here")
 
 
                 function set_val() {
@@ -237,8 +243,27 @@
                 success: function(response) {
                         console.log(response);
                         response= JSON.parse(response);
-                        document.getElementById("value").innerHTML=response['string'];
-                                }
+
+						if(response['code']!='0') { 
+                        	document.getElementById("code").innerHTML=response['code'];
+							document.getElementById("name").innerHTML=response['name'];
+							document.getElementById("type").innerHTML=response['type'];
+							document.getElementById("can").innerHTML=response['can'];
+
+						
+							if (response['code']=='1' || response['code']=='2'){
+								document.getElementById("color_box").style.backgroundColor="#99DEAB";
+							}
+							else if (response['code']=='3'){
+								document.getElementById("color_box").style.backgroundColor='red';
+							}
+							else {
+								document.getElementById("color_box").style.backgroundColor='yellow';
+							}
+						}
+
+
+                      }
                 });
                 };
 

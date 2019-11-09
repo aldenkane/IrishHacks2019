@@ -22,6 +22,7 @@ from collections import defaultdict
 
 recycle_info = defaultdict(dict)
 
+recycle_info[0] = {'code': 0, 'name': 'n/a', 'type': 'n/a', 'rec': 'n/a'}
 recycle_info[1] = {'code': 1, 'name': 'PETE', 'type': 'Polyethylene Terephthalate', 'rec': 'Yes'}
 recycle_info[2] = {'code': 2, 'name': 'HDPE', 'type': 'High Density Polyethylene', 'rec': 'Yes'}
 recycle_info[3] = {'code': 3, 'name': 'PVC', 'type': 'Polyvinyl chloride', 'rec': 'No'}
@@ -118,7 +119,7 @@ def gen():
 def get_value():
     middle_file = open("detected_Num.txt", "r")
     string = middle_file.readline()
-    return json.dumps({"string": string})
+    return json.dumps({"code": string, 'name':recycle_info[int(string)]['name'], 'type':recycle_info[int(string)]['type'],'can':recycle_info[int(string)]['rec']})
 
 
 @APP.route("/video_feed")
