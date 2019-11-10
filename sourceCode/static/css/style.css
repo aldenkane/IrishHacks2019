@@ -15,7 +15,13 @@ body {
 p {
 	color:#A7A7A7;
 }
-a { 
+
+h4 {
+	color:#FFFFFF;
+	font-size: 14px;
+}
+
+a {
 	color:#85AD90;
 }
 
@@ -83,7 +89,7 @@ a {
     background-color: #99DEAB;
 }
 .section-block.summary h1 {
-    color: #fff;
+  color: #fff;
 	display:block;
 	text-align:center;
 }
@@ -146,7 +152,7 @@ a {
 }
 .profile-contents ul li a i.fa {
 	font-size: 20px;
-	margin-top: 10px;
+	margin-top: 5px;
 }
 .profile-contents ul li a:hover {
 	background-color:#779A81;
@@ -170,8 +176,8 @@ a {
 	margin: 0px 10px 10px 0px;
 }
 .type-meta i.fa {
-	color:#99DEAB;
-	margin-right:5px;
+	color:#ffffff;
+	margin-right:2px;
 }
 .funding-meta h2{
 	font-weight:700;
@@ -256,7 +262,7 @@ a {
 	margin: 15px 0px;
 }
 .reward-block i.fa {
-	color:#99DEAB;
+	color:#ffffff;
 }
 .reward-block span {
 	margin-bottom: 10px;
@@ -440,6 +446,16 @@ a {
 	text-transform: uppercase;
 	font-weight: 600;
 	letter-spacing: 2px;
+}
+
+.box_detect_text
+{
+	color: #FFFFFF;
+	border-radius: 4px;
+	display: table;
+	padding: 0px 0px;
+	font-size: 14px;
+	font-weight:700;
 }
 
 /*-Overrides-*/

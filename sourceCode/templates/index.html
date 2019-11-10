@@ -43,12 +43,6 @@
 				<div class="pull-right">
 					<div class="reminder last">
 						<img src="static/img/IrishHacks_Logo.png" width="100" height="100" class="profile-image img responsive pull-right">
-						<!--social links
-						<ul class="list-inline">
-							<li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-							<li><a href="#"><i class="fa fa-git"></i></a></li>
-						</ul>
-						social links-->
 					</div>
 				</div>
 			</div>
@@ -68,8 +62,8 @@
 							<div class="video-frame">
 								<img src="{{ url_for('video_feed') }}" width="650" height="365" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen>
 							</div>
-							<p>CAN.it: An automated Recycling Identification Code classifier. This utility classifies plastics based on their chemical compisiton, which is denoted in by their RIC code (#'s 1-7).</p>
-							<p>CAN.it is perfect for use in industrial settings, then when integrated with a controls system to handle the physical plastics, can perform automated sorting of plastics. This will increase recycling accuracy. It can also be used in commercial and residential settings. For more information on RIC codes and recycling, consult the <a href=https://www.epa.gov/recycle/how-do-i-recycle-common-recyclables> US EPA</a> or your local recycling program.</p>
+							<p>CAN.it: An automated Resin Identification Code classifier. This utility classifies plastics based on their chemical compisiton, which is denoted in by their RIC code (#'s 1-7).</p>
+							<p>CAN.it is best suited for use in industrial settings. When integrated with a controls system to handle the plastics, can perform automated sorting of plastics. This will increase recycling accuracy. It can also be used in commercial and residential settings, as hardware stations set up in proximity to trash/recycling cans. For more information on RIC codes and recycling, consult the <a href=https://www.epa.gov/recycle/how-do-i-recycle-common-recyclables> US EPA</a> or your local recycling program.</p>
 						</div>
 					</div>
 				</div>
@@ -78,15 +72,14 @@
 				<!--sidebar-->
 				<div class="content col-md-4 col-sm-12 col-xs-12">
 					<div class="section-block summary" id="color_box">
-						<nobr><h1 class="section-title">RIC #: &nbsp</h1><h1 class="section-title" id="code">init</h1></nobr>
-						<nobr><h1 class="section-title">Abbreviation: &nbsp</h1>init<h1 class="section-title" id="name"></h1></nobr>
-						<nobr><h1 class="section-title">Type: &nbsp</h1>init<h1 class="section-title" id="type"></h1></nobr>
-						<nobr><h1 class="section-title">Recycling Status: &nbsp</h1>init<h1 class="section-title" id="can"></h1></nobr>
-
+						<nobr><h4>RIC #: &nbsp</h4><h4 id="code"></h4></nobr>
+						<nobr><h4>Type: &nbsp</h4><h4 id="type"></h4></nobr>
+						<nobr><h4>Abbreviation: &nbsp</h4><h4 id="name"></h4></nobr>
+						<nobr><h4>Recycling Status: &nbsp</h4><h4 id="can"></h4></nobr>
 					</div>
 					<!--credits-->
 					<div class="section-block">
-						<h1 class="section-title">CREDITS</h1>
+						<h1 class="section-title">CREDITS + CONTACT</h1>
 						<!--credits block-->
 						<div class="credit-block sources">
 							<ul class="list-unstyled">
@@ -96,6 +89,11 @@
 								<li><a href="http://fortawesome.github.io/Font-Awesome/"><i class="fa fa-external-link"></i>FontAwesome</a></li>
 								<li><a href="https://www.google.com/fonts"><i class="fa fa-external-link"></i>Google Fonts</a></li>
 								<li><a href="http://jquery.com/"><i class="fa fa-external-link"></i>jQuery</a></li>
+								<li><a href="https://github.com/aldenkane/IrishHacks2019"><i class="fa fa-external-link"></i>Project GitHub Repo</a></li>
+								<li><a href="https://www.linkedin.com/in/angel-jimenez-22206913b/"><i class="fa fa-external-link"></i>AJ Jimenez LinkedIn</a></li>
+								<li><a href="https://www.linkedin.com/in/alden-kane-a46265111/"><i class="fa fa-external-link"></i>Alden Kane LinkedIn</a></li>
+								<li><a href="https://www.linkedin.com/in/philip-vlandis-86635816b/"><i class="fa fa-external-link"></i>Phil Vlandis LinkedIn</a></li>
+
 							</ul>
 						</div>
 						<!--/credits block-->
@@ -137,7 +135,7 @@
 
 			//Sorting for Color Tuning, Feature Tuning in Top-Level
 			if(response['code']!='0') {
-                  	document.getElementById("code").innerHTML=response['code'];
+        document.getElementById("code").innerHTML=response['code'];
 				document.getElementById("name").innerHTML=response['name'];
 				document.getElementById("type").innerHTML=response['type'];
 				document.getElementById("can").innerHTML=response['can'];
