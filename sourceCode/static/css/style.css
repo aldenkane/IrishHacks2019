@@ -18,7 +18,14 @@ p {
 
 h4 {
 	color:#FFFFFF;
+	font-size: 16px;
+	font-weight: bold;
+}
+
+h5{
+	color: #FFFFFF;
 	font-size: 14px;
+	padding-bottom: 6px;
 }
 
 a {
