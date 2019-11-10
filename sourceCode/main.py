@@ -1,10 +1,7 @@
 import flask
 from flask import Response
-from flask import Flask
-from flask import render_template
 import cv2
 import io
-# Imports the Google Cloud client library
 from google.cloud import vision
 from google.cloud.vision import types
 import threading
@@ -14,7 +11,6 @@ from collections import defaultdict
 # ocr_GoogleVision.py
 # IrishHacks2019
 # Alden Kane, Phil Vlandis, & AJ Jimenez code for smart plastic recycling
-#	Author: Alden Kane
 #	OCR Code is from SpringML's "Streaming OCR with Google Vision's API and OpenCV tutorial." Modified to fit our purposes for this hackathon
 
 # Set environment variable at beginning of session
@@ -25,13 +21,11 @@ recycle_info = defaultdict(dict)
 recycle_info[0] = {'code': 0, 'name': 'n/a', 'type': 'n/a', 'rec': 'n/a'}
 recycle_info[1] = {'code': 1, 'name': 'PETE', 'type': 'Polyethylene Terephthalate', 'rec': 'Yes'}
 recycle_info[2] = {'code': 2, 'name': 'HDPE', 'type': 'High Density Polyethylene', 'rec': 'Yes'}
-recycle_info[3] = {'code': 3, 'name': 'PVC', 'type': 'Polyvinyl chloride', 'rec': 'No'}
-recycle_info[4] = {'code': 4, 'name': 'LDPE', 'type': 'Low density polyethylene',
-                   'rec': 'Sometimes, contact local recycling'}
-recycle_info[5] = {'code': 5, 'name': 'PP', 'type': 'Polypropylene', 'rec': 'Sometimes, contact local recycling'}
-recycle_info[6] = {'code': 6, 'name': 'PS', 'type': 'Polystyrene', 'rec': 'Sometimes, contact local recycling'}
-recycle_info[7] = {'code': 7, 'name': 'OTHER', 'type': 'Miscellaneous Plastics',
-                   'rec': 'Sometimes, contact local recycling'}
+recycle_info[3] = {'code': 3, 'name': 'PVC', 'type': 'Polyvinyl Chloride', 'rec': 'No'}
+recycle_info[4] = {'code': 4, 'name': 'LDPE', 'type': 'Low Density Polyethylene', 'rec': 'Sometimes - Contact Local Recycling'}
+recycle_info[5] = {'code': 5, 'name': 'PP', 'type': 'Polypropylene', 'rec': 'Sometimes - Contact Local Recycling'}
+recycle_info[6] = {'code': 6, 'name': 'PS', 'type': 'Polystyrene', 'rec': 'Sometimes - Contact Local Recycling'}
+recycle_info[7] = {'code': 7, 'name': 'OTHER', 'type': 'Misc Plastics', 'rec': 'Sometimes - Contact Local Recycling'}
 
 client = vision.ImageAnnotatorClient()
 
@@ -64,7 +58,6 @@ def detect_text(path):
     for text in texts:
         string += ' ' + text.description
     return string
-
 
 def number_recognition():
     # Capture frame-by-frame
